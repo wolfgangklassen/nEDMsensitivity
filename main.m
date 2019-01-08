@@ -3,17 +3,17 @@ par = genPar;
 const = genConst;
 %%calculate quantities that only dend on par/const%%%%%%%%%%%%%%%%%%%%%%%%%
 
-dh_uppercell = calcdh_uppercell(par);
+dh_uppercell = calcdh_uppercell(par);%good
 
-dh_lowercell = calcdh_lowercell(par);
+dh_lowercell = calcdh_lowercell(par);%good
 
-V_EDMguide = calcV_EDMguide(par);
+V_EDMguide = calcV_EDMguide(par);%good
 
-Vol_EDMguide = calcVol_EDMguide(par);
+Vol_EDMguide = calcVol_EDMguide(par);%good
 
-Vol_EDMcell = calcVol_EDMcell(par);
+Vol_EDMcell = calcVol_EDMcell(par);%answer is correct, in cm^3
 
-h_Hecont = calch_Hecont(par);
+h_Hecont = calch_Hecont(par);%%answer is low by 0.1 m, excel sheet may be wrong
 
 h_guidesource = calch_guidesource(par);
 
