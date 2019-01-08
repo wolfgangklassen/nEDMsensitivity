@@ -15,17 +15,17 @@ Vol_EDMcell = calcVol_EDMcell(par);%answer is correct, in cm^3
 
 h_Hecont = calch_Hecont(par);%%answer is low by 0.1 m, excel sheet may be wrong
 
-h_guidesource = calch_guidesource(par);
+h_guidesource = calch_guidesource(par);% good
 
-E_lowprod = calcE_lowprod(par);
+E_lowprod = calcE_lowprod(par);% good
 
-E_highafterirrad = calcE_highafterirrad(par);
+E_highafterirrad = calcE_highafterirrad(par);%good
 
-E_highprod = calcE_highprod(par);
+E_highprod = calcE_highprod(par);%good
 
-T_ramsey = calcT_ramsey(par);
+T_ramsey = calcT_ramsey(par);%good
 
-T_3He = calcT_3He(const);
+T_3He = calcT_3He(const);%good
 
 T_phon = calcT_phon(par);
 
