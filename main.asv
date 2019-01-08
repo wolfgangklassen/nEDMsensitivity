@@ -57,7 +57,7 @@ h_uppercell = calch_uppercell(par,h_guidesource,h_Hecont);
 
 E_lowafterirrad = calcE_lowafterirrad(E_lowprod);
 
-E_lowsourceexit = calcE_lowsourceexit(const,E_lowafterirrad,h_guidesource,h_Hecont);
+E_lowsourceexit = calcE_lowsourceexit(const,E_lowafterirrad,h_guidesource,h_Hecont)
 
 E_lowtopcell = calcE_lowtopcell(const,E_lowsourceexit,h_maxuppercell,h_uppercell);
 
