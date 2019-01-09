@@ -1,6 +1,7 @@
 %I am currently checking this against a working version of the spreadsheet
 %from RPicker: EDMsensitivity2019v01.xlsm from 
-%https://ucn.triumf.ca/ucn-source/next-generation-ucn-source-1/detailed-design
+%https://ucn.triumf.ca/ucn-source/next-generation-ucn-source-1/detailed-design,
+%the formulae do not match this sheet exactly, thats the next step.
 par = genPar;
 const = genConst;
 %%calculate quantities that only dend on par/const%%%%%%%%%%%%%%%%%%%%%%%%%
