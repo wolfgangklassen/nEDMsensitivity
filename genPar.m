@@ -24,6 +24,7 @@ par.B = 1.6E-02;
 par.C = 0.00E+00;
 par.T_HeII = 1.029;
 par.T_beta = 881.50;
+par.T_wallinput = 50;% s
 par.Mult_Tsource = 2.40;
 par.V_source = 213.50;
 par.V_LHe = 18.53;

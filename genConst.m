@@ -6,6 +6,8 @@ const.hbar = 6.71E-16;
 const.V_ngrav = 102.5545;
 const.R = 8.31;
 const.Nav = 6.02E+23;
+const.nMass = 1.67E-27;% kg
+const.elec = 1.6E-19;% C
 
 %%Helium constants%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 const.He.NDens_LHe = 2.19E+22;

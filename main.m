@@ -50,6 +50,14 @@ Vol_HEX = calcVol_HEX(par);%good, cm^3
 
 Vol_postHEX = calcVol_postHEX(par);%good, cm^3
 
+Surf_prod = calcSurf_prod(par);%good, cm^2
+
+Surf_HEX = calcSurf_HEX(par);%good, cm^2
+
+Surf_postHEX = calcSurf_postHEX(par);%good
+
+Surf_guidevapour = calcSurf_guidevapour(par);%good
+
 %%%%%%%%%%%%below here order of calulation matters%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Vol_preHEX = calcVol_preHEX(par,L_preHEX);%good, cm^3
@@ -104,7 +112,31 @@ Vol_source = calcVol_source(Vol_prod,Vol_guideLHe,Vol_guidevapour);%good
 
 F_postHEXvol = calcF_postHEXvol(Vol_postHEX,Vol_source);%good
 
-par.T_wall = calcT_wall();
+Vel_nvapourMax = calcVel_nvapourMax(const,E_hightopcell,h_guidesource,h_Hecont);%good
+
+Vel_nvapourMin = calcVel_nvapourMin(const,E_lowbottomcell,h_guidesource,h_Hecont);%good
+
+Vel_afterirradAvg = calcVel_afterirradAvg(Vel_nvapourMax,Vel_nvapourMin);%good
+
+Vel_ncellAvg = calcVel_ncellAvg(const,Vel_afterirradAvg,h_Hecont);%good
+
+F_preHEXvol = calcF_preHEXvol(Vol_preHEX,Vol_source);%good
+
+Surf_preHEX = calcSurf_preHEX(par,L_preHEX);%good
+
+F_HEXvol = calcF_HEXvol(Vol_HEX,Vol_source);%good
+
+F_vapourVol = calcF_vapourVol(Vol_guidevapour,Vol_source);%good
+
+mu_afterirrad = calcmu_afterirrad(par,Vel_ncellAvg,F_prodvol,Surf_prod,...
+    Vol_prod,F_preHEXvol,Surf_preHEX,Vol_preHEX,F_HEXvol,Surf_HEX,...
+    Vol_HEX,F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,...
+    Surf_guidevapour,Vol_guidevapour,Vel_afterirradAvg);%good
+
+par.T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
+    Vol_prod,F_preHEXvol,Surf_preHEX,Vol_preHEX,F_HEXvol,Surf_HEX,Vol_HEX,...
+    F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,Surf_guidevapour,...
+    Vol_guidevapour,Vel_afterirradAvg);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 T_source = calcT_source(par,F_prodvol,F_postHEXvol);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
