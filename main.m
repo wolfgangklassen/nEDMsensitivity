@@ -150,4 +150,4 @@ N_after = calcN_after(par,N_UCNt0,T_HgAbs);%close, low
 
 N_gooducndetected = calcN_gooducndetected(par,N_after);%close, low
 
-S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)
+S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)%not correct right now, still going through everything.
