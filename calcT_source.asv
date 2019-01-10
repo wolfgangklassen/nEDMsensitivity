@@ -1,6 +1,0 @@
-function T_source = calcT_source(F_prodvol,F_postHEXvol,T_phon)
-
-T_source = ((F_prodvol + F_postHEXvol)/T_phon + (-F_prodvol - F_postHEXvol + 1)/C(126) +...
-    (F_prodvol + F_postHEXvol)/C(127) + 1/C(128) + 1/C(129))^-1;
-
-end

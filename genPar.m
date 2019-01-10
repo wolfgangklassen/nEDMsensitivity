@@ -1,6 +1,6 @@
 function par = genPar
 %%populates the parameter object for doing test runs%%%%%%%%%%%%%%%%%%%%%%%
-par.E = 1200;
+par.E = 12000;
 par.T_pulse = 2;
 par.T_wait = 2;
 par.Eff_trans = 0.507;

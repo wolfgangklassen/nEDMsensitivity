@@ -138,16 +138,16 @@ par.T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
     F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,Surf_guidevapour,...
     Vol_guidevapour,Vel_afterirradAvg);%spreadsheet has 47.46, but this equation won't give me that.
 
-T_source = calcT_source(par,F_prodvol,F_postHEXvol,T_phon,T_vapour,T_3He);%
+T_source = calcT_source(par,F_prodvol,F_postHEXvol,T_phon,T_vapour,T_3He);% close, slightly high since T_wall is slightly high, s
 
-T_irrad = calcT_irrad(par,T_source);%close, low because Tsource is low, s
+T_irrad = calcT_irrad(par,T_source);%close, slightly high as above, s
 
-N_afterirrad = calcN_afterirrad(par,T_source,T_irrad,F_source);%close, low
+N_afterirrad = calcN_afterirrad(par,T_source,T_irrad,F_source);%close, high as above
 
-N_UCNt0 = calcN_UCNt0(N_afterirrad,F_sourceexit,Eff_cellfill);%close, low
+N_UCNt0 = calcN_UCNt0(N_afterirrad,F_sourceexit,Eff_cellfill);%close, high as above
 
-N_after = calcN_after(par,N_UCNt0,T_HgAbs);%close, low
+N_after = calcN_after(par,N_UCNt0,T_HgAbs);%close, high as above
 
-N_gooducndetected = calcN_gooducndetected(par,N_after);%close, low
+N_gooducndetected = calcN_gooducndetected(par,N_after);%close, high as above
 
-S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)%not correct right now, still going through everything.
+S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)%Now correct
