@@ -2,6 +2,8 @@
 %from RPicker: EDMsensitivity2019v01.xlsm from
 %https://ucn.triumf.ca/ucn-source/next-generation-ucn-source-1/detailed-design,
 %the formulae do not match this sheet exactly, thats the next step.
+
+%%generate parameters and constant
 par = genPar;
 const = genConst;
 %%calculate quantities that only dend on par/const%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -36,7 +38,7 @@ T_vapour = calcT_vapour(par);%good, s
 
 Vol_guidevapour = calcVol_guidevapour(par);%good, cm^3
 
-Vol_prod = calcVol_prod(par);%low, this formula assumes a cylindrical production volume, cm^3
+Vol_prod = calcVol_prod(par);%lgood, cm^3
 
 alpha = calcalpha(par);%good
 
@@ -133,12 +135,12 @@ mu_afterirrad = calcmu_afterirrad(par,Vel_ncellAvg,F_prodvol,Surf_prod,...
     Vol_HEX,F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,...
     Surf_guidevapour,Vol_guidevapour,Vel_afterirradAvg);%good
 
-par.T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
+T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
     Vol_prod,F_preHEXvol,Surf_preHEX,Vol_preHEX,F_HEXvol,Surf_HEX,Vol_HEX,...
     F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,Surf_guidevapour,...
     Vol_guidevapour,Vel_afterirradAvg);%spreadsheet has 47.46, but this equation won't give me that.
 
-T_source = calcT_source(par,F_prodvol,F_postHEXvol,T_phon,T_vapour,T_3He);% close, slightly high since T_wall is slightly high, s
+T_source = calcT_source(par,F_prodvol,F_postHEXvol,T_phon,T_vapour,T_3He,T_wall);% close, slightly high since T_wall is slightly high, s
 
 T_irrad = calcT_irrad(par,T_source);%close, slightly high as above, s
 
