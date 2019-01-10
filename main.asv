@@ -44,17 +44,15 @@ NDens_Hg = calcNDens_Hg(const,par);%good, m^-3
 
 Vel_Hg = calcVel_Hg(const,par);%good, m/s
 
-L_preHEX = calcL_preHEX(par);%good, m
+Vol_preHEX = calcVol_preHEX(par);
 
-Vol_HEX = calcVol_HEX(par);%good, cm^3
+Vol_HEX = calcVol_HEX(par);
 
-Vol_postHEX = calcVol_postHEX(par);%good, cm^3
+Vol_postHEX = calcVol_postHEX(par);
 
 %%%%%%%%%%%%below here order of calulation matters%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Vol_preHEX = calcVol_preHEX(par,L_preHEX);%good, cm^3
-
-Vol_guideLHe = calcVol_guideLHe(Vol_preHEX,Vol_HEX,Vol_postHEX);%good, cm^3
+Vol_guideLHe = calcVol_guideLHe(Vol_preHEX,Vol_HEX,Vol_postHEX);
 
 MFP_UCN = calcMFP_UCN(const,Vel_Hg,NDens_Hg);%good, m
 
@@ -68,7 +66,7 @@ h_uppercell = calch_uppercell(par,h_guidesource,h_Hecont);%good, m
 
 E_lowafterirrad = calcE_lowafterirrad(E_lowprod);%good, neV
 
-E_lowsourceexit = calcE_lowsourceexit(const,par,E_lowafterirrad,h_guidesource,h_Hecont);%good, neV
+E_lowsourceexit = calcE_lowsourceexit(const,E_lowafterirrad,h_guidesource,h_Hecont);%close, formula needs updating, neV
 
 E_lowtopcell = calcE_lowtopcell(const,E_lowsourceexit,h_maxuppercell,h_uppercell);%good, neV
 
@@ -76,11 +74,11 @@ E_highsourceexit = calcE_highsourceexit(E_highafterirrad);%good, neV
 
 E_hightopcell = calcE_hightopcell(const,par,E_highsourceexit,h_uppercell);%good
 
-F_uppercell = calcF_uppercell(par,E_hightopcell,E_lowtopcell,E_highsourceexit,E_lowsourceexit);%good
+F_uppercell = calcF_uppercell(par,E_hightopcell,E_lowtopcell,E_highsourceexit,E_lowsourceexit);%close
 
 h_bottomcell = calch_bottomcell(par,h_EDMguide);%good
 
-E_lowbottomcell = calcE_lowbottomcell(const,E_lowsourceexit,h_bottomcell);%good, neV
+E_lowbottomcell = calcE_lowbottomcell(const,E_lowsourceexit,h_bottomcell);%close, neV
 
 h_minlowercell = calch_minlowercell(h_EDMguide,dh_lowercell);%good, m
 
@@ -98,15 +96,7 @@ F_source = calcF_source(par,E_highafterirrad,E_lowafterirrad,E_highprod,E_lowpro
 
 VolFrac_He = calcVolFrac_He(Vol_prod,Vol_guideLHe,Vol_guidevapour);%probably good
 
-F_prodvol = calcF_prodvol(Vol_prod,Vol_guideLHe,Vol_guidevapour);%good
-
-Vol_source = calcVol_source(Vol_prod,Vol_guideLHe,Vol_guidevapour);%good
-
-F_postHEXvol = calcF_postHEXvol(Vol_postHEX,Vol_source);%good
-
-par.T_wall = calcT_wall();
-
-T_source = calcT_source(par,F_prodvol,F_postHEXvol);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+T_source = calcT_source(par,VolFrac_He,T_vapour,T_phon,T_3He);%close, low, s
 
 T_irrad = calcT_irrad(par,T_source);%close, low because Tsource is low, s
 

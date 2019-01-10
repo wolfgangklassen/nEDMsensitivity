@@ -11,6 +11,7 @@ const.Nav = 6.02E+23;
 const.He.NDens_LHe = 2.19E+22;
 const.He.Prop_3He = 1.00E-11;
 const.He.XSec_3He = 5333;
+const.He.V_LHe = 18.53; % neV
 
 %%Mercury constants%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 const.Hg.XSec_Hg = 2.15E+01;

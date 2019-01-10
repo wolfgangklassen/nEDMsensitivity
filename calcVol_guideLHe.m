@@ -1,5 +1,5 @@
-function Vol_guideLHe = calcVol_guideLHe(par)
+function Vol_guideLHe = calcVol_guideLHe(Vol_preHEX,Vol_HEX,Vol_postHEX)
 
-Vol_guideLHe = (par.L_guideLHe*pi*(par.d_guidesource^2)*1e6)/(4);
+Vol_guideLHe = Vol_preHEX + Vol_HEX + Vol_postHEX;
 
 end
