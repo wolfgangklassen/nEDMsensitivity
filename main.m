@@ -1,5 +1,5 @@
 %I am currently checking this against a working version of the spreadsheet
-%from RPicker: EDMsensitivity2019v01.xlsm from 
+%from RPicker: EDMsensitivity2019v01.xlsm from
 %https://ucn.triumf.ca/ucn-source/next-generation-ucn-source-1/detailed-design,
 %the formulae do not match this sheet exactly, thats the next step.
 par = genPar;
@@ -136,9 +136,9 @@ mu_afterirrad = calcmu_afterirrad(par,Vel_ncellAvg,F_prodvol,Surf_prod,...
 par.T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
     Vol_prod,F_preHEXvol,Surf_preHEX,Vol_preHEX,F_HEXvol,Surf_HEX,Vol_HEX,...
     F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,Surf_guidevapour,...
-    Vol_guidevapour,Vel_afterirradAvg);%good for now
+    Vol_guidevapour,Vel_afterirradAvg);%spreadsheet has 47.46, but this equation won't give me that.
 
-T_source = calcT_source(par,F_prodvol,F_postHEXvol);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+T_source = calcT_source(par,F_prodvol,F_postHEXvol,T_phon,T_vapour,T_3He);%
 
 T_irrad = calcT_irrad(par,T_source);%close, low because Tsource is low, s
 
