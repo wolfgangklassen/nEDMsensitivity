@@ -22,7 +22,6 @@ par.h_LHe = 0.05;% m
 par.A = 0.00E+00;
 par.B = 1.6E-02;
 par.C = 0.00E+00;
-par.Temp_HeII = 1.028637;%to be taken out of par
 par.Temp_warm = 300;% K
 par.T_beta = 881.50;
 par.T_wallinput = 50;% s

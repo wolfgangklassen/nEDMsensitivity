@@ -29,12 +29,6 @@ const.cryo.A_lambda = 1450;
 const.cryo.rho = 145;
 const.cryo.g = (const.cryo.rho.^2).*(const.cryo.S_lambda.^4).*...
     (const.cryo.Temp_lambda.^3)./(const.cryo.A_lambda);
-const.cryo.HEPAKtable = cell2mat(struct2cell(load("HEPAK_VanSciver_Table")));
-const.cryo.a = -2.50943;
-const.cryo.b = 2.25484;
-const.cryo.c = 9.70876;
-const.cryo.d = -0.304433;
-const.cryo.e = 0.210429;
-const.cryo.f = -0.0545145;
-const.cryo.g = 0.0056067;
+
+
 end

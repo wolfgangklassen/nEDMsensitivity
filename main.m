@@ -2,10 +2,16 @@
 %from RPicker: EDMsensitivity2019v01.xlsm from
 %https://ucn.triumf.ca/ucn-source/next-generation-ucn-source-1/detailed-design,
 %the formulae do not match this sheet exactly, thats the next step.
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%
+%
+%!!!!!!!!!!!!!!!!!!!MATLAB INDEXES START AT 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%
+%
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%
 
 %%generate parameters and constant
 par = genPar;
 const = genConst;
+cryo = genCryo(const);
 %%calculate quantities that only dend on par/const%%%%%%%%%%%%%%%%%%%%%%%%%
 
 dh_uppercell = calcdh_uppercell(par);%good, m
@@ -31,10 +37,6 @@ E_highprod = calcE_highprod(par);%good, neV
 T_ramsey = calcT_ramsey(par);%good, s
 
 T_3He = calcT_3He(const);%good, s
-
-T_phon = calcT_phon(par);%good, s
-
-T_vapour = calcT_vapour(const,par);%good, s
 
 Vol_guidevapour = calcVol_guidevapour(par);%good, cm^3
 
@@ -140,6 +142,13 @@ T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
     F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,Surf_guidevapour,...
     Vol_guidevapour,Vel_afterirradAvg);%spreadsheet has 47.46, but this equation won't give me that.
 
+
+Temp_HeII = calcTemp_HeII();%Last peice to be changed, I think%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+T_phon = calcT_phon(par,Temp_HeII);%good, s
+
+T_vapour = calcT_vapour(const,par,Temp_HeII);%good, s
+
 T_source = calcT_source(par,F_prodvol,F_postHEXvol,T_phon,T_vapour,T_3He,T_wall);% close, slightly high since T_wall is slightly high, s
 
 T_irrad = calcT_irrad(par,T_source);%close, slightly high as above, s
@@ -152,4 +161,4 @@ N_after = calcN_after(par,N_UCNt0,T_HgAbs);%close, high as above
 
 N_gooducndetected = calcN_gooducndetected(par,N_after);%close, high as above
 
-S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)%Now correct
+S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)%Now correctish
