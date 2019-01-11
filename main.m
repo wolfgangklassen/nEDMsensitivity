@@ -34,11 +34,11 @@ T_3He = calcT_3He(const);%good, s
 
 T_phon = calcT_phon(par);%good, s
 
-T_vapour = calcT_vapour(par);%good, s
+T_vapour = calcT_vapour(const,par);%good, s
 
 Vol_guidevapour = calcVol_guidevapour(par);%good, cm^3
 
-Vol_prod = calcVol_prod(par);%lgood, cm^3
+Vol_prod = calcVol_prod(par);%good, cm^3
 
 alpha = calcalpha(par);%good
 
@@ -56,9 +56,9 @@ Surf_prod = calcSurf_prod(par);%good, cm^2
 
 Surf_HEX = calcSurf_HEX(par);%good, cm^2
 
-Surf_postHEX = calcSurf_postHEX(par);%good
+Surf_postHEX = calcSurf_postHEX(par);%good, cm^2
 
-Surf_guidevapour = calcSurf_guidevapour(par);%good
+Surf_guidevapour = calcSurf_guidevapour(par);%good, cm^2
 
 %%%%%%%%%%%%below here order of calulation matters%%%%%%%%%%%%%%%%%%%%%%%%%
 

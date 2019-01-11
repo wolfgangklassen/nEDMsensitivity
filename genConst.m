@@ -14,7 +14,8 @@ const.He.NDens_LHe = 2.19E+22;
 const.He.Prop_3He = 1.00E-11;
 const.He.XSec_3He = 5333;
 const.He.V_LHe = 18.53; % neV
-
+const.He.UpscatteringMatrix = cell2mat(struct2cell(load("HeVapourUpscatteringMatrix")));
+const.He.LHeTempIndex = cell2mat(struct2cell(load("LHeIIIndexArray")));
 %%Mercury constants%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 const.Hg.XSec_Hg = 2.15E+01;
 const.Hg.m_Hg = 1.29E-01;
