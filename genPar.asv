@@ -54,9 +54,4 @@ par.Analysingpower = 0.90;
 par.T_1 = 1.00E+03;
 par.staticLoad = 1;%W
 par.beamHeating = 9.6;%W
-par.thickness_HEX = 0.005;%m
-par.HEXfin_pitch = 0.002;%m
-par.HEXfin_width = 0.001;%m
-par.HEXfin_length = 0.002;%m
-par.numfins = 300;
 end

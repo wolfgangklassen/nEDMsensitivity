@@ -11,7 +11,7 @@
 %%generate parameters and constant
 par = genPar;
 const = genConst;
-cryo = genCryo(const);
+cryo = genCryo(const,par);
 %%calculate quantities that only dend on par/const%%%%%%%%%%%%%%%%%%%%%%%%%
 
 dh_uppercell = calcdh_uppercell(par);%good, m
@@ -142,8 +142,39 @@ T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
     F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,Surf_guidevapour,...
     Vol_guidevapour,Vel_afterirradAvg);%spreadsheet has 47.46, but this equation won't give me that.
 
+totalHeatLoad = calctotalHeatLoad(par);
 
-Temp_HeII = calcTemp_HeII();%Last peice to be changed, I think%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ind = find(cryo.pumping.coolingPower>totalHeatLoad,1,'first');
+%NB 'lo' and 'hi' here refer to the over/under estimation from selecting a
+%row in the lookup table, not the physical position of any component
+Temp_3Hehi = const.He.He3LatentHeatTable(ind,1);
+
+Temp_3Helo = const.He.He3LatentHeatTable(ind-1,1);
+
+Temp_3HeInt = calcTemp_3HeInt(par,cryo,ind,Temp_3Helo,Temp_3Hehi);
+
+%work in progress
+% Temp_HEXhi = (ind);
+% 
+% Temp_HEXlo = (ind-1);
+% 
+% Temp_HEXInt = calcTemp_HEXInt();
+% 
+% Temp_isohi = (ind);
+% 
+% Temp_isolo = (ind-1);
+% 
+% Temp_isoInt = calcTemp_isoInt();
+% 
+% Temp_prodhi = (ind);
+% 
+% Temp_prodlo = (ind-1);
+% 
+% Temp_prodInt = calcTemp_prodInt();
+% 
+% Temp_HeII = calcTemp_HeII(Temp_isoInt,Temp_prodInt);%Last peice to be changed, I think%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%work in progress
+Temp_HeII = 1.028637;
 
 T_phon = calcT_phon(par,Temp_HeII);%good, s
 

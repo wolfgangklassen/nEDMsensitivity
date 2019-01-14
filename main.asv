@@ -2,10 +2,16 @@
 %from RPicker: EDMsensitivity2019v01.xlsm from
 %https://ucn.triumf.ca/ucn-source/next-generation-ucn-source-1/detailed-design,
 %the formulae do not match this sheet exactly, thats the next step.
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%
+%
+%!!!!!!!!!!!!!!!!!!!MATLAB INDEXES START AT 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%
+%
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%
 
 %%generate parameters and constant
 par = genPar;
 const = genConst;
+cryo = genCryo(const);
 %%calculate quantities that only dend on par/const%%%%%%%%%%%%%%%%%%%%%%%%%
 
 dh_uppercell = calcdh_uppercell(par);%good, m
@@ -32,13 +38,9 @@ T_ramsey = calcT_ramsey(par);%good, s
 
 T_3He = calcT_3He(const);%good, s
 
-T_phon = calcT_phon(par);%good, s
-
-%T_vapour = calcT_vapour(const,par);%to be replaced with formula
-T_vapour = 1.002
 Vol_guidevapour = calcVol_guidevapour(par);%good, cm^3
 
-Vol_prod = calcVol_prod(par);%lgood, cm^3
+Vol_prod = calcVol_prod(par);%good, cm^3
 
 alpha = calcalpha(par);%good
 
@@ -56,9 +58,9 @@ Surf_prod = calcSurf_prod(par);%good, cm^2
 
 Surf_HEX = calcSurf_HEX(par);%good, cm^2
 
-Surf_postHEX = calcSurf_postHEX(par);%good
+Surf_postHEX = calcSurf_postHEX(par);%good, cm^2
 
-Surf_guidevapour = calcSurf_guidevapour(par);%good
+Surf_guidevapour = calcSurf_guidevapour(par);%good, cm^2
 
 %%%%%%%%%%%%below here order of calulation matters%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -140,6 +142,42 @@ T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
     F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,Surf_guidevapour,...
     Vol_guidevapour,Vel_afterirradAvg);%spreadsheet has 47.46, but this equation won't give me that.
 
+totalHeatLoad = calctotalHeatLoad();
+
+ind = find(cryo.pumping.coolingPower>totalHeatLoad,1,'first');
+
+Temp_3Hehi = const.He.He3LatentHeatTable(ind,1);
+
+Temp_3Helo = const.He.He3LatentHeatTable(ind-1,1);
+
+Temp_3HeInt = calcTemp_3HeInt(ind,Temp_3Helo,Temp_3Hehi);
+
+Temp_HEXhi = (ind);
+
+Temp_HEXlo = (ind-1);
+
+Temp_HEXInt = calcTemp_HEXInt();
+
+Temp_isohi = (ind);
+
+Temp_isolo = (ind-1);
+
+Temp_isoInt = calcTemp_isoInt();
+
+
+Temp_HEXhi = (ind);
+
+Temp_HEXlo = (ind-1);
+
+
+Temp_prodInt = calcTemp_prodInt();
+
+Temp_HeII = calcTemp_HeII(Temp_isoInt,Temp_prodInt);%Last peice to be changed, I think%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+T_phon = calcT_phon(par,Temp_HeII);%good, s
+
+T_vapour = calcT_vapour(const,par,Temp_HeII);%good, s
+
 T_source = calcT_source(par,F_prodvol,F_postHEXvol,T_phon,T_vapour,T_3He,T_wall);% close, slightly high since T_wall is slightly high, s
 
 T_irrad = calcT_irrad(par,T_source);%close, slightly high as above, s
@@ -152,4 +190,4 @@ N_after = calcN_after(par,N_UCNt0,T_HgAbs);%close, high as above
 
 N_gooducndetected = calcN_gooducndetected(par,N_after);%close, high as above
 
-S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)%Now correct
+S_perfill = calcS_perfill(const,par,T_ramsey,N_gooducndetected,alpha)%Now correctish

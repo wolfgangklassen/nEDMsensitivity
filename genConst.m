@@ -4,10 +4,11 @@ function const = genConst
 %%universal constants%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 const.hbar = 6.71E-16;
 const.V_ngrav = 102.5545;
-const.R = 8.31;
+const.R = 8.3144598;
 const.Nav = 6.02E+23;
 const.nMass = 1.67E-27;% kg
 const.elec = 1.6E-19;% C
+const.roomTemp = 300; %K
 
 %%Helium constants%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 const.He.NDens_LHe = 2.19E+22;
@@ -37,4 +38,9 @@ const.cryo.d = -0.304433;
 const.cryo.e = 0.210429;
 const.cryo.f = -0.0545145;
 const.cryo.g = 0.0056067;
+const.cryo.pressureDrop = 0.04;% mbar
+const.cryo.pumpingSpeed = 10000./3600; %m^3s^-1
+const.cryo.Eff_JT = 0.83;
+const.cryo.Kapitza = 35;
+const.cryo.Kapitza_corr = 2.6;
 end
