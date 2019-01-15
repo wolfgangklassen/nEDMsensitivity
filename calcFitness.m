@@ -1,6 +1,4 @@
-function fitness = calcFitness(const,par)
-
-cryo = genCryo(const,par);
+function fitness = calcFitness(const,par,cryo)
 
 dh_uppercell = calcdh_uppercell(par);
 

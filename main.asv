@@ -45,6 +45,8 @@ Vol_guidevapour = calcVol_guidevapour(par);%good, cm^3
 
 Vol_prod = calcVol_prod(par);%good, cm^3
 
+alpha = calcalpha(par);%good
+
 NDens_Hg = calcNDens_Hg(const,par);%good, m^-3
 
 Vel_Hg = calcVel_Hg(const,par);%good, m/s
@@ -64,8 +66,6 @@ Surf_postHEX = calcSurf_postHEX(par);%good, cm^2
 Surf_guidevapour = calcSurf_guidevapour(par);%good, cm^2
 
 %%%%%%%%%%%%below here order of calulation matters%%%%%%%%%%%%%%%%%%%%%%%%%
-
-alpha = calcalpha(par,T_ramsey);%good
 
 Vol_preHEX = calcVol_preHEX(par,L_preHEX);%good, cm^3
 
@@ -111,7 +111,7 @@ F_sourceexit = calcF_sourceexit(par,E_highsourceexit,E_lowsourceexit,E_highafter
 
 F_source = calcF_source(par,E_highafterirrad,E_lowafterirrad,E_highprod,E_lowprod);%good
 
-% VolFrac_He = calcVolFrac_He(Vol_prod,Vol_guideLHe,Vol_guidevapour);%probably good
+VolFrac_He = calcVolFrac_He(Vol_prod,Vol_guideLHe,Vol_guidevapour);%probably good
 
 F_prodvol = calcF_prodvol(Vol_prod,Vol_guideLHe,Vol_guidevapour);%good
 
@@ -139,8 +139,6 @@ mu_afterirrad = calcmu_afterirrad(par,Vel_ncellAvg,F_prodvol,Surf_prod,...
     Vol_prod,F_preHEXvol,Surf_preHEX,Vol_preHEX,F_HEXvol,Surf_HEX,...
     Vol_HEX,F_postHEXvol,Surf_postHEX,Vol_postHEX,F_vapourVol,...
     Surf_guidevapour,Vol_guidevapour,Vel_afterirradAvg);%good
-
-%mu_afterirrad = 0.000795125208133104;%This allows me ot match the spreadsheet exacty, to continue testing
 
 T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
     Vol_prod,F_preHEXvol,Surf_preHEX,Vol_preHEX,F_HEXvol,Surf_HEX,Vol_HEX,...
