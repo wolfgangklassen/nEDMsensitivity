@@ -4,7 +4,7 @@ function const = genConst
 %%universal constants%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 const.hbar = 6.71E-16;
 const.V_ngrav = 102.554472910481;
-const.R = 8.31;%44598;
+const.R = 8.3144598;
 const.Nav = 6.02E+23;
 const.nMass = 1.674927351E-027;% kg
 const.elec = 1.602176565E-019;

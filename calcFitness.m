@@ -94,8 +94,6 @@ F_sourceexit = calcF_sourceexit(par,E_highsourceexit,E_lowsourceexit,E_highafter
 
 F_source = calcF_source(par,E_highafterirrad,E_lowafterirrad,E_highprod,E_lowprod);
 
-VolFrac_He = calcVolFrac_He(Vol_prod,Vol_guideLHe,Vol_guidevapour);
-
 F_prodvol = calcF_prodvol(Vol_prod,Vol_guideLHe,Vol_guidevapour);
 
 Vol_source = calcVol_source(Vol_prod,Vol_guideLHe,Vol_guidevapour);
@@ -131,18 +129,6 @@ T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
 totalHeatLoad = calctotalHeatLoad(par);
 
 [~,ind] = min(abs(cryo.pumping.coolingPower-totalHeatLoad));
-
-% Temp_3Hehi = const.He.He3LatentHeatTable(ind,1);
-% 
-% Temp_3Helo = const.He.He3LatentHeatTable(ind-1,1);
-% 
-% Temp_3HeInt = calcTemp_3HeInt(par,cryo,ind,Temp_3Helo,Temp_3Hehi);
-
-% Temp_HEXhi = cryo.pumping.T_HEX(ind);
-% 
-% Temp_HEXlo = cryo.pumping.T_HEX(ind-1);
-% 
-% Temp_HEXInt = calcTemp_HEXInt(par,cryo,ind,Temp_HEXlo,Temp_HEXhi);
 
 Temp_isohi = cryo.pumping.T_HeIIlow(ind);
 
