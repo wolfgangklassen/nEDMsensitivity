@@ -144,37 +144,34 @@ T_wall = calcT_wall(mu_afterirrad,Vel_ncellAvg,F_prodvol,Surf_prod,...
 
 totalHeatLoad = calctotalHeatLoad(par);
 
-ind = find(cryo.pumping.coolingPower>totalHeatLoad,1,'first');
+[~,ind] = min(abs(cryo.pumping.coolingPower-totalHeatLoad));
 %NB 'lo' and 'hi' here refer to the over/under estimation from selecting a
 %row in the lookup table, not the physical position of any component
-Temp_3Hehi = const.He.He3LatentHeatTable(ind,1);
+% Temp_3Hehi = const.He.He3LatentHeatTable(ind,1);%good
+% 
+% Temp_3Helo = const.He.He3LatentHeatTable(ind-1,1);%good
+% 
+% Temp_3HeInt = calcTemp_3HeInt(par,cryo,ind,Temp_3Helo,Temp_3Hehi);%good
 
-Temp_3Helo = const.He.He3LatentHeatTable(ind-1,1);
+% Temp_HEXhi = cryo.pumping.T_HEX(ind);%good
+% 
+% Temp_HEXlo = cryo.pumping.T_HEX(ind-1);%good
+% 
+% Temp_HEXInt = calcTemp_HEXInt(par,cryo,ind,Temp_HEXlo,Temp_HEXhi);%good
 
-Temp_3HeInt = calcTemp_3HeInt(par,cryo,ind,Temp_3Helo,Temp_3Hehi);
+Temp_isohi = cryo.pumping.T_HeIIlow(ind);%good
 
-%work in progress
-% Temp_HEXhi = (ind);
-% 
-% Temp_HEXlo = (ind-1);
-% 
-% Temp_HEXInt = calcTemp_HEXInt();
-% 
-% Temp_isohi = (ind);
-% 
-% Temp_isolo = (ind-1);
-% 
-% Temp_isoInt = calcTemp_isoInt();
-% 
-% Temp_prodhi = (ind);
-% 
-% Temp_prodlo = (ind-1);
-% 
-% Temp_prodInt = calcTemp_prodInt();
-% 
-% Temp_HeII = calcTemp_HeII(Temp_isoInt,Temp_prodInt);%Last peice to be changed, I think%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%work in progress
-Temp_HeII = 1.028637;
+Temp_isolo = cryo.pumping.T_HeIIlow(ind-1);%good
+
+Temp_isoInt = calcTemp_isoInt(par,cryo,ind,Temp_isolo,Temp_isohi);%good
+
+Temp_prodhi = cryo.pumping.T_HeIIhigh(ind);%good
+
+Temp_prodlo = cryo.pumping.T_HeIIhigh(ind-1);%good
+
+Temp_prodInt = calcTemp_prodInt(par,cryo,ind,Temp_prodlo,Temp_prodhi);%good
+
+Temp_HeII = calcTemp_HeII(Temp_isoInt,Temp_prodInt);%good
 
 T_phon = calcT_phon(par,Temp_HeII);%good, s
 

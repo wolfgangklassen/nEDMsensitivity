@@ -46,8 +46,20 @@ cryo.pumping.delta_T2 = cryo.pumping.coolingPower./cryo.pumping.h_kNiHeII./cryo.
 
 cryo.pumping.T_HeIIlow = cryo.pumping.T_HEX + cryo.pumping.delta_T2;
 
-%%next steps: find index for const.cryo.HEPAKtable(:,1)=T_HeIIlow, return
-%%cryo.fTinverse.VanScivercumsum(ind).  modify this as in excel sheet, and
-%%reverse lookup the new cumsum to temp.  This is T_HeIIhigh.
+XSec_area = calcXSec_area(par);
 
+L_channel = calcL_channel(par);
+
+for i = 1:length(cryo.pumping.T_HeIIlow)
+    [~,ind1] = min(abs(const.cryo.HEPAKtable(:,1) - cryo.pumping.T_HeIIlow(i)));
+    oldintegral = cryo.fTinverse.VanScivercumsum(ind1);
+    newintegral = oldintegral + (cryo.pumping.coolingPower(i)./XSec_area).^3.*L_channel;
+    [~,ind2] = min(abs(cryo.fTinverse.VanScivercumsum - newintegral));
+    cryo.pumping.T_HeIIhigh(i,1) = const.cryo.HEPAKtable(ind2,1);
+end
+%T_HeIIhigh is very close to the excel sheet answer, remaining differences
+%may be in the search function used in the integral tables, and frankly I 
+%understand mine better so I'm inclined to trust it.
+%cryo.pumping.total_dT = cryo.pumping.T_HeIIhigh - const.He.He3LatentHeatTable(:,1);
+%i dont know why dT is calculated, I don't need it anywhere.
 end

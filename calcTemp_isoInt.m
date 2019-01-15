@@ -1,5 +1,8 @@
-function Temp_isoInt = calcTemp_isoInt()
+function Temp_isoInt = calcTemp_isoInt(par,cryo,ind,Temp_isolo,Temp_isohi)
 
-Temp_isoInt = ;
+Temp_isoInt = Temp_isolo +...
+    (par.beamHeating + par.staticLoad - cryo.pumping.coolingPower(ind-1))./...
+    (cryo.pumping.coolingPower(ind) - cryo.pumping.coolingPower(ind-1)).*...
+    (Temp_isohi - Temp_isolo);
 
 end

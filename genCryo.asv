@@ -46,6 +46,19 @@ cryo.pumping.delta_T2 = cryo.pumping.coolingPower./cryo.pumping.h_kNiHeII./cryo.
 
 cryo.pumping.T_HeIIlow = cryo.pumping.T_HEX + cryo.pumping.delta_T2;
 
-%%next steps: match T_HeIIlow to a 
+XSec_area = calcXSec_area(par);
+
+L_channel = calcL_channel(par);
+
+for i = 1:length(cryo.pumping.T_HeIIlow)
+    [~,ind1] = min(abs(const.cryo.HEPAKtable(:,1) - cryo.pumping.T_HeIIlow(i)));
+    oldintegral = cryo.fTinverse.VanScivercumsum(ind1);
+    newintegral = oldintegral + (cryo.pumping.coolingPower(i)./XSec_area).^3.*L_channel;
+    [~,ind2] = min(abs(const.cryo.HEPAKtable(:,2) - newintegral));
+    cryo.pumping.T_HeIIhi
+end
+%%next steps: find index for const.cryo.HEPAKtable(:,1)=T_HeIIlow, return
+%%cryo.fTinverse.VanScivercumsum(ind).  modify this as in excel sheet, and
+%%reverse lookup the new cumsum to temp.  This is T_HeIIhigh.
 
 end

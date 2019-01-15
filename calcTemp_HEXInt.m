@@ -1,5 +1,9 @@
-function Temp_HEXInt = calcTemp_HEXInt()
+function Temp_HEXInt = calcTemp_HEXInt(par,cryo,ind,Temp_HEXlo,Temp_HEXhi)
 
-Temp_HEXInt = ;
+Temp_HEXInt = Temp_HEXlo +...
+    (par.beamHeating + par.staticLoad - cryo.pumping.coolingPower(ind-1))./...
+    (cryo.pumping.coolingPower(ind) - cryo.pumping.coolingPower(ind-1)).*...
+    (Temp_HEXhi - Temp_HEXlo);
+
 
 end

@@ -12,6 +12,7 @@ par.L_guideLHe = 2.86;
 par.d_guidesource = 0.150;
 par.L_guidevapour = 1.00;
 par.d_guideVapour = 0.1;
+par.L_preHEX = 1.96; % m
 par.d_preHEX = 0.15;% m
 par.L_HEX = 0.6; % m
 par.d_HEX = 0.15; % m

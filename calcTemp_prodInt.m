@@ -1,5 +1,9 @@
-function Temp_prodInt = calcTemp_prodInt()
+function Temp_prodInt = calcTemp_prodInt(par,cryo,ind,Temp_prodlo,Temp_prodhi)
 
-Temp_prodInt = ;
+Temp_prodInt = Temp_prodlo +...
+    (par.beamHeating + par.staticLoad - cryo.pumping.coolingPower(ind-1))./...
+    (cryo.pumping.coolingPower(ind) - cryo.pumping.coolingPower(ind-1)).*...
+    (Temp_prodhi - Temp_prodlo);
+
 
 end
