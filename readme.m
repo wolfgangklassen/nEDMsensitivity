@@ -16,6 +16,11 @@
 %This also made it slightly easier to compare to the existing sheet, as 
 %main.m still kinda looks like the "original" tab in the sheet.
 
+%in general, T_ is a time, Temp_ is a temperature, P_ is a pressure, V_ is
+%a potential, Vol_ is a volume, Surf_ is a surface area, F_ is a unitless
+%fractional quantity, E_ is an energy, L_ is a length, d_ is a diameter, h_
+%is a height, Vel_ is a velocity, and N_ is a number.
+
 %I intend main.m to be mainly a developmental tool, with the real
 %calulations using calcFitness, which looks just like main.m, but takes the
 %const, par, and cryo objects as arguments, so they're not calculated each

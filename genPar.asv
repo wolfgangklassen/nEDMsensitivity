@@ -55,6 +55,6 @@ par.beamHeating = 9.6; % W        :heat load due to beam
 par.thickness_HEX = 0.005; % m    :wall thickness of HEX
 par.HEXfin_pitch = 0.002; % m     :fin pitch in HEX
 par.HEXfin_width = 0.001; % m     :fin width in HEX
-par.HEXfin_length = 0.002; % m    :fin length in HEX
-par.numfins = 300; % N/A          :number of fins in the heat exchanger
+par.HEXfin_length = 0.002; % m    :fin
+par.numfins = 300;
 end
